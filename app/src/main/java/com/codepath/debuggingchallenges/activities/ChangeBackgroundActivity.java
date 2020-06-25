@@ -1,23 +1,38 @@
 package com.codepath.debuggingchallenges.activities;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.codepath.debuggingchallenges.R;
 
 public class ChangeBackgroundActivity extends AppCompatActivity {
-
+    //find element
+    //Button goBtn;
     private int oldColor = Color.BLUE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_background);
+        /*goBtn = findViewById(R.id.btnGo);
+        goBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Change","Clicked.");
+                onGoClick(view);
+            }
+        });*/
     }
 
     public void onGoClick(View view) {
+        System.out.println("WORKING!");
+        Log.d("Change","click_action");
         View mainView = findViewById(android.R.id.content);
         mainView.setBackgroundColor(getNextColor());
     }
