@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
+    private Context context;
     private List<Movie> movies;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -40,13 +43,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         }
     }
 
-    public MoviesAdapter(List<Movie> movies) {
+    public MoviesAdapter(Context context,List<Movie> movies) {
+        this.context =context;
         this.movies = movies;
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return movies.size();
     }
 
     @NonNull
@@ -73,9 +77,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
         Resources resources = viewHolder.tvName.getResources();
         double movieRating = movie.getRating();
-
         if (movieRating > 6) {
-            viewHolder.view.setBackgroundColor(Color.GREEN);
+            viewHolder.itemView.setBackgroundColor(Color.GREEN);
+        }
+        else{
+            viewHolder.itemView.setBackgroundColor(Color.WHITE);
         }
 
         String ratingText = String.format(resources.getString(R.string.rating), movieRating);
